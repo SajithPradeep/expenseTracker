@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import AppRouter from "./router/AppRouter";
+
+import configureStore from "./store/configureStore";
+import { Provider } from "react-redux";
+
+const store = configureStore();
+
+// store.dispatch({
+//   type: "ADD_EXPENSE",
+//   expense: {
+//     description: "Sajith",
+//     id: 1,
+//     note: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, eos?",
+//     createdAt: "12-12-2020",
+//     amount: 100,
+//   },
+// });
+
+const state = store.getState();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
   );
 }
 

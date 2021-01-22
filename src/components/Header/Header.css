@@ -1,0 +1,54 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  background: #333;
+  color: aliceblue;
+}
+
+header .user-icon {
+  background: cornsilk;
+  color: crimson;
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+
+.left-header {
+  margin: 0 5px;
+}
+
+.right-header ul {
+  list-style: none;
+  display: flex;
+}
+
+.right-header ul li {
+  margin: 20px;
+}
+
+.right-header ul li a {
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 17px;
+}
+
+.right-header ul li a:hover {
+  cursor: pointer;
+  color: wheat;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .right-header ul {
+    margin: 0;
+    padding: 0;
+  }
+  .right-header ul li {
+    margin: 5px;
+  }
+  .left-header h1 {
+    margin: 5px 0;
+  }
+}

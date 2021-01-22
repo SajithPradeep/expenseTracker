@@ -1,0 +1,6 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  animation: animate1 3s infinite;
+  margin-top: 100px;
+}

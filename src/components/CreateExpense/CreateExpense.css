@@ -1,0 +1,67 @@
+#create-expense {
+  background: aquamarine;
+  height: 500px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin: 30px auto;
+}
+
+#create-expense .create-expense-header {
+  font-size: 25px;
+}
+
+#create-expense .add-expense-form {
+  height: 300px;
+  min-width: 300px;
+}
+
+#create-expense .add-expense-form-element {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0px 0px 0px;
+}
+#create-expense .add-expense-form-element label {
+  margin-right: 5px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+#create-expense .add-expense-form-element input {
+  width: 170px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid green;
+  border-radius: 3px;
+  height: 20px;
+  font-size: 12px;
+  font-family: cursive;
+}
+
+#create-expense .add-expense-form-element input:focus {
+  outline: none;
+  border: 2px solid green;
+}
+
+#create-expense button {
+  margin-top: 40px;
+  height: 30px;
+  width: 150px;
+  border: none;
+  background: green;
+  color: aliceblue;
+  border-radius: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 1px 1px 2px olive;
+}
+
+#create-expense button:hover {
+  cursor: pointer;
+  background: rgb(1, 63, 1);
+}
