@@ -35,7 +35,7 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    if (!localStorage.getItem("authToken")) {
+    if (!sessionStorage.getItem("authToken")) {
       this.props.history.push("/login");
     } else {
       axios
@@ -62,7 +62,7 @@ class Dashboard extends Component {
   }
 
   componentDidUpdate() {
-    if (!localStorage.getItem("authToken")) {
+    if (!sessionStorage.getItem("authToken")) {
       this.props.history.push("/login");
     } else {
       console.log("state after [UPDATE]", this.props.expenses);

@@ -14,7 +14,7 @@ const Header = (props) => {
   }, [props.user]);
 
   const logoutHandler = () => {
-    localStorage.removeItem("authToken");
+    sessionStorage.removeItem("authToken");
     //const history = useHistory();
     props.history.push("/");
   };

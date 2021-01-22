@@ -23,7 +23,7 @@ class LoginPage extends React.Component {
           return user.email === e.target.email.value;
         });
         if (loggedInUser.password === e.target.password.value) {
-          localStorage.setItem("authToken", loggedInUser.userid);
+          sessionStorage.setItem("authToken", loggedInUser.userid);
           this.props.addUser(loggedInUser);
           this.props.history.push("/");
         }
@@ -46,7 +46,7 @@ class LoginPage extends React.Component {
         user
       )
       .then((response) => {
-        localStorage.setItem("authToken", user.userid);
+        sessionStorage.setItem("authToken", user.userid);
         this.props.addUser(user);
         this.props.history.push("/");
       })

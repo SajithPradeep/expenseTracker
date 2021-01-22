@@ -1,6 +1,6 @@
 const userExpenses = (expenses) => {
   return expenses.filter((exp) => {
-    return exp.userid === localStorage.getItem("authToken");
+    return exp.userid === sessionStorage.getItem("authToken");
   });
 };
 

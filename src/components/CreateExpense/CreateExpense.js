@@ -13,7 +13,7 @@ class CreateExpense extends Component {
       amount: e.target.amount.value,
       note: e.target.note.value,
       createdAt: e.target.date.value,
-      userid: localStorage.getItem("authToken"),
+      userid: sessionStorage.getItem("authToken"),
     };
     axios
       .post(
@@ -29,12 +29,12 @@ class CreateExpense extends Component {
       });
   };
   componentDidMount() {
-    if (!localStorage.getItem("authToken")) {
+    if (!sessionStorage.getItem("authToken")) {
       this.props.history.push("/login");
     }
   }
   componentDidUpdate() {
-    if (!localStorage.getItem("authToken")) {
+    if (!sessionStorage.getItem("authToken")) {
       this.props.history.push("/login");
     }
   }
