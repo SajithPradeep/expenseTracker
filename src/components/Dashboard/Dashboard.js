@@ -100,7 +100,7 @@ class Dashboard extends Component {
           <div>
             {/* <Header /> */}
             <main id="Dashboard">
-              <h2>{this.props.user.name}'s dashboard</h2>
+              <h2>{sessionStorage.getItem("userName")}'s dashboard</h2>
               {this.props.expenses.length === 0 && (
                 <div className="no-expenses">
                   <p>Start adding expenses to view them</p>

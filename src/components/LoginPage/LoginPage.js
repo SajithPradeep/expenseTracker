@@ -26,6 +26,7 @@ class LoginPage extends React.Component {
         });
         if (loggedInUser.password === e.target.password.value) {
           sessionStorage.setItem("authToken", loggedInUser.userid);
+          sessionStorage.setItem("userName", loggedInUser.name);
           this.props.addUser(loggedInUser);
           this.props.history.push("/");
         }
