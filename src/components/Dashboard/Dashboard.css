@@ -91,8 +91,12 @@
   }
   .expense-list-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     overflow: auto;
+  }
+
+  .expense-list-item .note {
+    grid-column: 1 / span 3;
   }
   .expense-list {
     padding: 0;

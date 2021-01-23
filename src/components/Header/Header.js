@@ -15,6 +15,7 @@ const Header = (props) => {
 
   const logoutHandler = () => {
     sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("userName");
     //const history = useHistory();
     props.history.push("/");
   };
@@ -32,7 +33,7 @@ const Header = (props) => {
             <NavLink to="/create">Create Expense</NavLink>
           </li>
           <li>
-            {props.user.name && (
+            {sessionStorage.getItem("userName") && (
               <button onClick={logoutHandler} className="user-icon">
                 Logout
               </button>
