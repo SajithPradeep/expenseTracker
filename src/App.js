@@ -17,7 +17,7 @@ const store = configureStore();
 //   },
 // });
 
-const state = store.getState();
+//const state = store.getState();
 
 function App() {
   return (
