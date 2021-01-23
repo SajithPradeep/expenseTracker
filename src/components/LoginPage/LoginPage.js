@@ -4,6 +4,8 @@ import { v4 as uuid } from "uuid";
 import { connect } from "react-redux";
 import { addUser } from "../../actions/user";
 
+import "./LoginPage.css";
+
 class LoginPage extends React.Component {
   state = {
     loginClicked: true,
@@ -56,15 +58,15 @@ class LoginPage extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div id="login-page">
         <h2>Please Login to continue using the app</h2>
         {this.state.loginClicked && (
           <form onSubmit={(e) => this.loginHandler(e)}>
-            <div>
+            <div className="form-element">
               <label htmlFor="email">Email</label>
               <input type="text" name="email" placeholder="Enter email" />
             </div>
-            <div>
+            <div className="form-element">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -72,7 +74,7 @@ class LoginPage extends React.Component {
                 placeholder="Enter password"
               />
             </div>
-            <button>Login</button>
+            <button className="login-button">Login</button>
           </form>
         )}
         {this.state.signupClicked && (
@@ -88,15 +90,15 @@ class LoginPage extends React.Component {
         <p>OR</p>
         {this.state.signupClicked && (
           <form onSubmit={(e) => this.signupHandler(e)}>
-            <div>
-              <label htmlFor="name">Email</label>
+            <div className="form-element">
+              <label htmlFor="name">Name</label>
               <input type="text" name="name" placeholder="Enter Username" />
             </div>
-            <div>
+            <div className="form-element">
               <label htmlFor="email">Email</label>
               <input type="text" name="email" placeholder="Enter email" />
             </div>
-            <div>
+            <div className="form-element">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
