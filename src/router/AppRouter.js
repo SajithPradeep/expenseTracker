@@ -6,10 +6,11 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import CreateExpense from "../components/CreateExpense/CreateExpense";
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
 import LoginPage from "../components/LoginPage/LoginPage";
+import Footer from "../components/Footer/Footer";
 
 const AppRouter = () => (
   <BrowserRouter>
-    <div>
+    <div className="content">
       <Header />
       <Switch>
         <Route path="/" component={Dashboard} exact={true} />
@@ -18,6 +19,7 @@ const AppRouter = () => (
         <Route component={NotFoundPage} />
       </Switch>
     </div>
+    <Footer />
   </BrowserRouter>
 );
 

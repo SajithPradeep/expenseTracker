@@ -12,7 +12,7 @@ export const addExpense = ({ description, note, amount, createdAt } = {}) => ({
 });
 
 export const deleteExpense = (id = "") => {
-  console.log("delete expense called");
+  console.log("expense to be deleted", id);
   return {
     type: "DELETE_EXPENSE",
     id,

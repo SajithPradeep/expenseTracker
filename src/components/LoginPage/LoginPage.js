@@ -3,6 +3,7 @@ import axios from "axios";
 import { v4 as uuid } from "uuid";
 import { connect } from "react-redux";
 import { addUser } from "../../actions/user";
+import bcrypt from "bcryptjs";
 
 import "./LoginPage.css";
 
@@ -13,6 +14,12 @@ class LoginPage extends React.Component {
   };
   loginHandler = (e) => {
     e.preventDefault();
+    let successFunction = (loggedInUser) => {
+      sessionStorage.setItem("authToken", loggedInUser.userid);
+      sessionStorage.setItem("userName", loggedInUser.name);
+      this.props.addUser(loggedInUser);
+      this.props.history.push("/");
+    };
     axios
       .get(
         "https://expensestracker-952cc-default-rtdb.firebaseio.com/users.json"
@@ -21,15 +28,40 @@ class LoginPage extends React.Component {
         let users = Object.keys(response.data).map((usKey) => {
           return { ...response.data[usKey], userUniqueKey: usKey };
         });
+        if (!users) {
+          return alert("user does not exist. please sign up");
+        }
         let loggedInUser = users.find((user) => {
           return user.email === e.target.email.value;
         });
-        if (loggedInUser.password === e.target.password.value) {
-          sessionStorage.setItem("authToken", loggedInUser.userid);
-          sessionStorage.setItem("userName", loggedInUser.name);
-          this.props.addUser(loggedInUser);
-          this.props.history.push("/");
+        if (!loggedInUser) {
+          return alert("user does not exist. please sign up");
         }
+        bcrypt.compare(
+          e.target.password.value,
+          loggedInUser.password,
+          function (err, result) {
+            if (err) {
+              return alert("pls try again");
+            }
+            if (result === true) {
+              successFunction(loggedInUser);
+            } else {
+              console.log(this);
+              alert("wrong credentials");
+            }
+          }
+        );
+
+        // if (loggedInUser.password === e.target.password.value) {
+        //   sessionStorage.setItem("authToken", loggedInUser.userid);
+        //   sessionStorage.setItem("userName", loggedInUser.name);
+        //   this.props.addUser(loggedInUser);
+        //   this.props.history.push("/");
+        // }
+      })
+      .catch((err) => {
+        alert("User not found. Please Sign Up to continue using the app");
       });
   };
   signupViewHandler = () => {
@@ -37,12 +69,14 @@ class LoginPage extends React.Component {
   };
   signupHandler = (e) => {
     e.preventDefault();
+    let salt = bcrypt.genSaltSync(10);
     let user = {
       name: e.target.name.value,
       email: e.target.email.value,
-      password: e.target.password.value,
+      password: bcrypt.hashSync(e.target.password.value, salt),
       userid: uuid(),
     };
+
     axios
       .post(
         "https://expensestracker-952cc-default-rtdb.firebaseio.com/users.json",
@@ -50,6 +84,7 @@ class LoginPage extends React.Component {
       )
       .then((response) => {
         sessionStorage.setItem("authToken", user.userid);
+        sessionStorage.setItem("userName", user.name);
         this.props.addUser(user);
         this.props.history.push("/");
       })
@@ -60,9 +95,9 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div id="login-page">
-        <h2>Please Login to continue using the app</h2>
+        <h2>Please Login / Sign Up to continue using the app</h2>
         {this.state.loginClicked && (
-          <form onSubmit={(e) => this.loginHandler(e)}>
+          <form onSubmit={(e) => this.loginHandler(e)} autoComplete="off">
             <div className="form-element">
               <label htmlFor="email">Email</label>
               <input type="text" name="email" placeholder="Enter email" />
@@ -90,7 +125,7 @@ class LoginPage extends React.Component {
         <hr />
         <p>OR</p>
         {this.state.signupClicked && (
-          <form onSubmit={(e) => this.signupHandler(e)}>
+          <form onSubmit={(e) => this.signupHandler(e)} autoComplete="off">
             <div className="form-element">
               <label htmlFor="name">Name</label>
               <input type="text" name="name" placeholder="Enter Username" />
@@ -107,7 +142,7 @@ class LoginPage extends React.Component {
                 placeholder="Enter password"
               />
             </div>
-            <button>Sign Up</button>
+            <button className="sign-up">Sign Up</button>
           </form>
         )}
         {this.state.loginClicked && (

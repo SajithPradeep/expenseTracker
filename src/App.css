@@ -2,3 +2,11 @@
   --primary-font: Arial, Helvetica, sans-serif;
   --primary-color: aquamarine;
 }
+
+.is-active {
+  color: wheat;
+}
+
+.content {
+  min-height: calc(100vh - 50px);
+}
