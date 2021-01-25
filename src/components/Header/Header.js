@@ -27,10 +27,14 @@ const Header = (props) => {
       <div className="right-header">
         <ul>
           <li>
-            <NavLink to="/">Dashboard</NavLink>
+            <NavLink activeClassName="is-active" to="/">
+              Dashboard
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/create">Create Expense</NavLink>
+            <NavLink activeClassName="is-active" to="/create">
+              Create Expense
+            </NavLink>
           </li>
           <li>
             {sessionStorage.getItem("userName") && (

@@ -18,16 +18,17 @@ class Dashboard extends Component {
       loading: false,
     };
   }
-  handleDeleteExpense = async (id, exId) => {
-    this.props.deleteExpense(id);
-    await axios
+  handleDeleteExpense = (exId) => {
+    this.setState({ loading: true });
+    axios
       .delete(
         "https://expensestracker-952cc-default-rtdb.firebaseio.com/expense/" +
           exId +
           ".json"
       )
-      .then(() => {
-        this.props.deleteExpense(id);
+      .then(async () => {
+        await this.props.deleteExpense(exId);
+        this.setState({ loading: false });
       })
       .catch((err) => {
         alert("cannot delete", err);
@@ -130,7 +131,7 @@ class Dashboard extends Component {
                           <span
                             className="delete-button span-item"
                             onClick={() =>
-                              this.handleDeleteExpense(item.id, item.expenseId)
+                              this.handleDeleteExpense(item.expenseId)
                             }
                           >
                             X

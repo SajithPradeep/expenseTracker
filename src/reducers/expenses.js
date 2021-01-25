@@ -6,7 +6,7 @@ const expensesReducer = (state = expensesReeducerDefaultState, action) => {
       return [...state, action.expense];
     case "DELETE_EXPENSE":
       return state.filter((expense) => {
-        return expense.id !== action.id;
+        return expense.expenseId !== action.id;
       });
     case "SYNC_EXPENSES":
       return [...action.expenses];

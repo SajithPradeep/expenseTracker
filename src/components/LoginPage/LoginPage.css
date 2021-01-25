@@ -17,7 +17,7 @@
     height: 30px;
     width: 275px;
     font-family: var(--primary-font);
-    font-size: 18px;
+    font-size: 16px;
   }
 
   #login-page .form-element label {
@@ -26,11 +26,32 @@
     font-weight: bold;
   }
 
+  #login-page button {
+    font-family: var(--primary-font);
+    color: blueviolet;
+    border: none;
+    height: 40px;
+    font-size: 16px;
+    border-bottom: 2px solid;
+    border-radius: 5px;
+  }
+
   #login-page button.login-button {
     height: 35px;
     width: 150px;
     border: none;
     background: rgb(56, 104, 56);
+    color: aliceblue;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  #login-page button.sign-up {
+    height: 35px;
+    width: 150px;
+    border: none;
+    background: rgb(57, 101, 245);
     color: aliceblue;
     border-radius: 5px;
     font-family: Arial, Helvetica, sans-serif;
